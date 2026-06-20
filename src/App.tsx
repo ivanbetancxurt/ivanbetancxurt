@@ -7,6 +7,9 @@ function App() {
             <div className='container'>
                 <div className='card'>
                     <img src={ headshot } alt="Ivan's headshot" className='headshot' />
+                    <p>
+                        biobiobiobiobiobiobiobio   
+                    </p>
                     <section className='links'>
                         <div>
                             <a href='https://github.com/ivanbetancxurt' target='_blank' rel='noopener noreferrer'>GitHub</a>                        

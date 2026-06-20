@@ -13,10 +13,11 @@
 .card {
   background-color: #2e2e2e;
   border-radius: 1rem;
-  padding: 2rem 5rem;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  height: fit-content;
 }
 
 .headshot {
@@ -28,4 +29,8 @@
 
 .links {
   background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 12rem;
 }
