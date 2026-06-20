@@ -14,4 +14,18 @@
   background-color: #2e2e2e;
   border-radius: 1rem;
   padding: 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.headshot {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.links {
+  background-color: red;
 }
