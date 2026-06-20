@@ -1,11 +1,16 @@
-import { useState } from "react";
-import "./App.scss";
+import './App.scss';
+import headshot from './public/headshot.jpg';
 
 function App() {
     return (
         <>
             <div className='container'>
-                container
+                <div className='card'>
+                    <img src={ headshot } alt="Ivan's headshot" width='100px' />
+                    <div>
+                        list of links
+                    </div>
+                </div>
             </div>
         </>
     );
