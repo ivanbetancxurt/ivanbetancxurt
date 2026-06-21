@@ -3,7 +3,7 @@
   width: 50px;
   position: absolute;
   background-color: red;
-  top: 30px;
+  bottom: 200px;
   left: 50px;
 }  
 
@@ -29,6 +29,8 @@
   backdrop-filter: blur(30px);
   padding: 2rem;
   border-radius: 1.5rem;
+  border-top: 1px solid rgba(225, 255, 255, 0.3);
+  border-left: 1px solid rgba(225, 255, 255, 0.3);
 }
 
 .headshot {
@@ -68,11 +70,15 @@
 }
 
 .link {
-  background-color: pink;
+  background-color: #1a1a1a;
   height: auto;
   padding: 1rem;
   border-radius: 1rem;
+  display: flex;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 a {
