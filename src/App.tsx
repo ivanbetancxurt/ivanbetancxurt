@@ -5,7 +5,7 @@ import Typed from "typed.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faSquareLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faAt } from "@fortawesome/free-solid-svg-icons"
+import { faAt, faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 
 
 function App() {
@@ -59,7 +59,7 @@ function App() {
                             href="mailto:ivanab252@gmail.com"
                             className="link"
                         >
-                            <FontAwesomeIcon icon={faAt} style={{ fontSize: "1.8rem" }} />
+                            <FontAwesomeIcon icon={faPaperPlane} style={{ fontSize: "1.6rem" }} />
                             Email
                         </a>
                     </section>
