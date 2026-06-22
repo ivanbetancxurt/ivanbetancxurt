@@ -5,7 +5,8 @@ import Typed from "typed.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faSquareLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
+import { faPaperPlane, faAt } from "@fortawesome/free-solid-svg-icons"
+
 
 function App() {
     const bio = useRef(null);
@@ -60,7 +61,7 @@ function App() {
                             rel="noopener noreferrer"
                             className="link"
                         >
-                            <FontAwesomeIcon icon={faPaperPlane} size="2x" />
+                            <FontAwesomeIcon icon={faAt} style={{ fontSize: "1.8rem" }} />
                             Email
                         </a>
                     </section>

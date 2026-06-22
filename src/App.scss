@@ -3,9 +3,9 @@
   width: 50px;
   position: absolute;
   background-color: red;
-  bottom: 200px;
-  left: 50px;
-}  
+  bottom: 250px;
+  left: 100px;
+}
 
 * {
   box-sizing: border-box;
@@ -81,7 +81,12 @@
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
-  box-shadow: inset 4px 4px 3px rgba(0, 0, 0, 0.15), inset -4px -4px 3px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.15), inset -3px -3px 3px rgba(255, 255, 255, 0.1);
+  transition: background-color 0.4s ease;
+}
+
+.link:hover {
+  background-color: rgba(20, 20, 20, 0.7);
 }
 
 a {
