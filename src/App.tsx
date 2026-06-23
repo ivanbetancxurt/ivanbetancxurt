@@ -5,14 +5,23 @@ import Typed from "typed.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faSquareLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faAt, faPaperPlane } from "@fortawesome/free-solid-svg-icons"
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
+function draw(ctx) {
+    console.log("yo");
+    ctx.fillStyle = "red";
+    ctx.fillRect(500, 300, 20, 20);
+}
 
 function App() {
-    const bio = useRef(null);
+    const bioRef = useRef(null);
+    const canvasRef = useRef(null);
+    const gridRef = useRef(null);
+
+    const cellSize: number = 20;
 
     useEffect(() => {
-        const typed = new Typed(bio.current, {
+        const typed = new Typed(bioRef.current, {
             strings: [
                 "Hey, my name is Ivan. I'm a software engineer based in the Boston area and I studied math and CS at Amherst College. Outside of work, I'm deep into music; all kinds, but classical piano especially. Feel free to reach out for whatever.",
             ],
@@ -24,17 +33,29 @@ function App() {
         return () => {
             typed.destroy();
         };
-    });
+    }, []);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const dpr = window.devicePixelRatio;
+        canvas.width = canvas.clientWidth * dpr;
+        canvas.height = canvas.clientHeight * dpr;
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpr, dpr);
+        const rafId = requestAnimationFrame(() => draw(ctx));
+
+        return () => cancelAnimationFrame(rafId);
+    }, []);
 
     return (
         <>
             <div className="container">
-                <div className="glassTester">o</div>
+                <canvas ref={canvasRef} />
                 <div className="card">
                     <img src={headshot} alt="Ivan's headshot" className="headshot" />
                     <h1 className="name">Ivan Betancourt</h1>
                     <p className="bio">
-                        <span ref={bio} />
+                        <span ref={bioRef} />
                     </p>
                     <section className="links">
                         <a
@@ -55,11 +76,11 @@ function App() {
                             <FontAwesomeIcon icon={faSquareLinkedin} size="2x" />
                             LinkedIn
                         </a>
-                        <a
-                            href="mailto:ivanab252@gmail.com"
-                            className="link"
-                        >
-                            <FontAwesomeIcon icon={faPaperPlane} style={{ fontSize: "1.6rem" }} />
+                        <a href="mailto:ivanab252@gmail.com" className="link">
+                            <FontAwesomeIcon
+                                icon={faPaperPlane}
+                                style={{ fontSize: "1.6rem" }}
+                            />
                             Email
                         </a>
                     </section>
