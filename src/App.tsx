@@ -6,20 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faSquareLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-
-function draw(ctx) {
-    console.log("yo");
-    ctx.fillStyle = "red";
-    ctx.fillRect(500, 300, 20, 20);
-    ctx.fillRect(100, 200, 20, 20);
-}
+import CA from "./CA";
 
 function App() {
     const bioRef = useRef(null);
     const canvasRef = useRef(null);
 
-    let grid = [];
-    const gridRef = useRef(grid);
+    const gridRef = useRef(null);
 
     const cellSize: number = 20;
 
@@ -45,7 +38,27 @@ function App() {
         canvas.height = canvas.clientHeight * dpr;
         const ctx = canvas.getContext("2d");
         ctx.scale(dpr, dpr);
-        const rafId = requestAnimationFrame(() => draw(ctx));
+
+        const rows = Math.ceil(canvas.clientHeight / cellSize);
+        const cols = Math.ceil(canvas.clientWidth / cellSize);
+        gridRef.current = new CA(rows, cols, cellSize, ctx);
+
+        let rafId;
+        const interval = 100;
+        let last = 0;
+
+        function animate(timestamp: number) {
+            if (timestamp - last > interval) {
+                ctx.clearRect(0, 0, canvas.clientHeight, canvas.clientWidth);
+                gridRef.current.draw();
+                last = timestamp;
+            }
+
+            rafId = requestAnimationFrame(animate);
+        }
+
+        gridRef.current.draw();
+        rafId = requestAnimationFrame(animate);
 
         return () => cancelAnimationFrame(rafId);
     }, []);
