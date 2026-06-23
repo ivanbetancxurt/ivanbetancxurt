@@ -18,8 +18,8 @@ class CA {
         const rMid = Math.floor(this.rows / 2);
         const cMid = Math.floor(this.cols / 2);
 
-        for (let r = rMid - 5; r <= rMid + 5; r++) {
-            for (let c = cMid - 5; c <= cMid + 5; c++) {
+        for (let r = rMid - 25; r <= rMid + 25; r++) {
+            for (let c = cMid - 25; c <= cMid + 25; c++) {
                 if (Math.random() > 0.5) {
                     this.grid[r][c] = true;
                 }
@@ -27,7 +27,76 @@ class CA {
         }
     }
 
-    update() { }
+    mod(x: number, y: number) {
+        return ((x % y) + y) % y;
+    }
+
+    hlUpdate() {
+        const next = Array.from({ length: this.rows }, () => Array(this.cols).fill(false));
+
+        for (let r = 0; r < this.rows; r++) {
+            for (let c = 0; c < this.cols; c++) {
+                const neighbors = this.getNeighbors(r, c);
+
+                if (this.grid[r][c]) {
+                    if (neighbors !== 2 && neighbors !== 3) {
+                        next[r][c] = false;
+                    } else {
+                        next[r][c] = true;
+                    }
+                } else {
+                    if (neighbors === 3 || neighbors === 6) {
+                        next[r][c] = true;
+                    }    
+                }
+            }
+        }
+
+        this.grid = next;
+    }
+    
+    golUpdate() {
+        const next = Array.from({ length: this.rows }, () => Array(this.cols).fill(false));
+
+        for (let r = 0; r < this.rows; r++) {
+            for (let c = 0; c < this.cols; c++) {
+                const neighbors = this.getNeighbors(r, c);
+
+                if (this.grid[r][c]) {
+                    if (neighbors !== 2 && neighbors !== 3) {
+                        next[r][c] = false;
+                    } else {
+                        next[r][c] = true;
+                    }
+                } else {
+                    if (neighbors === 3) {
+                        next[r][c] = true;
+                    }
+                }
+            }
+        }
+
+        this.grid = next;
+    }
+
+    getNeighbors(row, col) {
+        let neighbors: number = 0;
+
+        for (let dr = -1; dr <= 1; dr++) {
+            for (let dc = -1; dc <= 1; dc++) {
+                if (dr === 0 && dc === 0) {
+                    continue;
+                }
+                neighbors += Number(
+                    this.grid[this.mod(row + dr, this.rows)][
+                    this.mod(col + dc, this.cols)
+                    ],
+                );
+            }
+        }
+
+        return neighbors;
+    }
 
     draw() {
         for (let r = 0; r < this.grid.length; r++) {

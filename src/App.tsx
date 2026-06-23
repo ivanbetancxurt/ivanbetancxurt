@@ -14,7 +14,7 @@ function App() {
 
     const gridRef = useRef(null);
 
-    const cellSize: number = 20;
+    const cellSize: number = 8;
 
     useEffect(() => {
         const typed = new Typed(bioRef.current, {
@@ -44,12 +44,13 @@ function App() {
         gridRef.current = new CA(rows, cols, cellSize, ctx);
 
         let rafId;
-        const interval = 100;
+        const interval = 60;
         let last = 0;
 
         function animate(timestamp: number) {
             if (timestamp - last > interval) {
-                ctx.clearRect(0, 0, canvas.clientHeight, canvas.clientWidth);
+                ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+                gridRef.current.golUpdate();
                 gridRef.current.draw();
                 last = timestamp;
             }
