@@ -11,12 +11,15 @@ function draw(ctx) {
     console.log("yo");
     ctx.fillStyle = "red";
     ctx.fillRect(500, 300, 20, 20);
+    ctx.fillRect(100, 200, 20, 20);
 }
 
 function App() {
     const bioRef = useRef(null);
     const canvasRef = useRef(null);
-    const gridRef = useRef(null);
+
+    let grid = [];
+    const gridRef = useRef(grid);
 
     const cellSize: number = 20;
 
