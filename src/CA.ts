@@ -50,7 +50,6 @@ class CA {
         this.grid[r - 1][c + 1] = true;
         this.grid[r + 1][c + 1] = true;
         this.grid[r - 1][c + 2] = true;
-
     }
 
     hlUpdate() {
@@ -118,6 +117,13 @@ class CA {
         }
 
         return neighbors;
+    }
+
+    interact = (e: MouseEvent) => {
+        const r = Math.floor(e.offsetY / this.cellSize);
+        const c = Math.floor(e.offsetX / this.cellSize);
+
+        this.grid[r][c] = true;
     }
 
     draw() {

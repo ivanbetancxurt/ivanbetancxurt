@@ -43,6 +43,8 @@ function App() {
         const cols = Math.ceil(canvas.clientWidth / cellSize);
         gridRef.current = new CA(rows, cols, cellSize, ctx);
 
+        canvas.addEventListener("mousemove", gridRef.current.interact);
+
         let rafId;
         const interval = 60;
         let last = 0;
@@ -61,7 +63,10 @@ function App() {
         gridRef.current.draw();
         rafId = requestAnimationFrame(animate);
 
-        return () => cancelAnimationFrame(rafId);
+        return () => {
+            cancelAnimationFrame(rafId);
+            canvas.removeEventListener("mousemove", gridRef.current.interact)
+        }
     }, []);
 
     return (
