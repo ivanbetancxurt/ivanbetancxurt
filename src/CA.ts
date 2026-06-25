@@ -21,9 +21,9 @@ class CA {
         for (let r = rMid - 48; r <= rMid + 48; r++) {
             for (let c = cMid - 100; c <= cMid + 100; c++) {
                 const p = Math.random();
-                if (p < 0.0003) {
+                if (p < 0.0002) {
                     this.buildAcorn(r, c);
-                } else if (p < 0.0006) {
+                } else if (p < 0.0004) {
                     this.buildPento(r, c);
                 }
             }
@@ -35,7 +35,7 @@ class CA {
     }
 
     buildAcorn(r: number, c: number) {
-        this.grid[r][c] = true;        
+        this.grid[r][c] = true;
         this.grid[r][c + 1] = true;
         this.grid[r - 2][c + 1] = true;
         this.grid[r - 1][c + 3] = true;
@@ -53,7 +53,9 @@ class CA {
     }
 
     hlUpdate() {
-        const next = Array.from({ length: this.rows }, () => Array(this.cols).fill(false));
+        const next = Array.from({ length: this.rows }, () =>
+            Array(this.cols).fill(false),
+        );
 
         for (let r = 0; r < this.rows; r++) {
             for (let c = 0; c < this.cols; c++) {
@@ -68,16 +70,18 @@ class CA {
                 } else {
                     if (neighbors === 3 || neighbors === 6) {
                         next[r][c] = true;
-                    }    
+                    }
                 }
             }
         }
 
         this.grid = next;
     }
-    
+
     golUpdate() {
-        const next = Array.from({ length: this.rows }, () => Array(this.cols).fill(false));
+        const next = Array.from({ length: this.rows }, () =>
+            Array(this.cols).fill(false),
+        );
 
         for (let r = 0; r < this.rows; r++) {
             for (let c = 0; c < this.cols; c++) {
@@ -120,11 +124,20 @@ class CA {
     }
 
     interact = (e: MouseEvent) => {
-        const r = Math.floor(e.offsetY / this.cellSize);
-        const c = Math.floor(e.offsetX / this.cellSize);
+        const row = Math.floor(e.offsetY / this.cellSize);
+        const col = Math.floor(e.offsetX / this.cellSize);
 
-        this.grid[r][c] = true;
-    }
+        const radius = 2;
+        for (let dr = -radius; dr <= radius; dr++) {
+            for (let dc = -radius; dc <= radius; dc++) {
+                if (dr === 0 && dc === 0) continue; 
+                if (Math.abs(dr) + Math.abs(dc) > radius) continue; 
+                const r = this.mod(row + dr, this.rows);
+                const c = this.mod(col + dc, this.cols);
+                this.grid[r][c] = true; 
+            }
+        }
+    };
 
     draw() {
         for (let r = 0; r < this.grid.length; r++) {
