@@ -18,10 +18,13 @@ class CA {
         const rMid = Math.floor(this.rows / 2);
         const cMid = Math.floor(this.cols / 2);
 
-        for (let r = rMid - 25; r <= rMid + 25; r++) {
-            for (let c = cMid - 25; c <= cMid + 25; c++) {
-                if (Math.random() > 0.5) {
-                    this.grid[r][c] = true;
+        for (let r = rMid - 48; r <= rMid + 48; r++) {
+            for (let c = cMid - 100; c <= cMid + 100; c++) {
+                const p = Math.random();
+                if (p < 0.0003) {
+                    this.buildAcorn(r, c);
+                } else if (p < 0.0006) {
+                    this.buildPento(r, c);
                 }
             }
         }
@@ -29,6 +32,25 @@ class CA {
 
     mod(x: number, y: number) {
         return ((x % y) + y) % y;
+    }
+
+    buildAcorn(r: number, c: number) {
+        this.grid[r][c] = true;        
+        this.grid[r][c + 1] = true;
+        this.grid[r - 2][c + 1] = true;
+        this.grid[r - 1][c + 3] = true;
+        this.grid[r][c + 4] = true;
+        this.grid[r][c + 5] = true;
+        this.grid[r][c + 6] = true;
+    }
+
+    buildPento(r: number, c: number) {
+        this.grid[r][c] = true;
+        this.grid[r][c + 1] = true;
+        this.grid[r - 1][c + 1] = true;
+        this.grid[r + 1][c + 1] = true;
+        this.grid[r - 1][c + 2] = true;
+
     }
 
     hlUpdate() {
