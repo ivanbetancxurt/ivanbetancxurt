@@ -4,7 +4,8 @@ class CA {
     grid: boolean[][];
     cellSize: number;
     ctx;
-    pallete = [`rgb(166, 105, 209)`, `rgb(138, 73, 184)`, `rgb(228, 203, 245)`];
+    purplePallete = [`rgb(166, 105, 209)`, `rgb(138, 73, 184)`, `rgb(228, 203, 245)`];
+    bluePallete = [`rgb(62, 164, 237)`, `rgb(36, 138, 212)`, `rgb(132, 194, 240)`]
 
     constructor(rows: number, cols: number, cellSize: number, ctx) {
         this.rows = rows;
@@ -145,11 +146,11 @@ class CA {
                 const p = Math.random();
 
                 if (p < 0.33) {
-                    this.ctx.fillStyle = this.pallete[0];
+                    this.ctx.fillStyle = this.bluePallete[0];
                 } else if (p > 0.66) {
-                    this.ctx.fillStyle = this.pallete[1];
+                    this.ctx.fillStyle = this.bluePallete[1];
                 } else {
-                    this.ctx.fillStyle = this.pallete[2];
+                    this.ctx.fillStyle = this.bluePallete[2];
                 }
 
                 if (this.grid[r][c]) {
