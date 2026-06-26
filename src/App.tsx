@@ -1,20 +1,32 @@
 import "./App.scss";
 import headshot from "./public/headshot.jpg";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faSquareLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import {
+    faPaperPlane,
+    faCircleQuestion,
+} from "@fortawesome/free-solid-svg-icons";
 import CA from "./CA";
 
 function App() {
+    const [showQuestion, setShowQuestion] = useState(false);
+    const [showThesisPlug, setThesisPlug] = useState(false);
     const bioRef = useRef(null);
     const canvasRef = useRef(null);
-
     const gridRef = useRef(null);
 
     const cellSize: number = 8;
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowQuestion(true);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         const typed = new Typed(bioRef.current, {
@@ -45,7 +57,7 @@ function App() {
 
         canvas.addEventListener("mousemove", gridRef.current.interact);
 
-        let rafId;
+        let rafId: number;
         const interval = 60;
         let last = 0;
 
@@ -65,14 +77,19 @@ function App() {
 
         return () => {
             cancelAnimationFrame(rafId);
-            canvas.removeEventListener("mousemove", gridRef.current.interact)
-        }
+            canvas.removeEventListener("mousemove", gridRef.current.interact);
+        };
     }, []);
 
     return (
         <>
             <div className="container">
                 <canvas ref={canvasRef} />
+                <div className={`thesisPlug ${showQuestion ? "visible" : ""}`}>
+                    {showQuestion && (
+                            <FontAwesomeIcon icon={faCircleQuestion} size="2x" />
+                    )}
+                </div>
                 <div className="card">
                     <img src={headshot} alt="Ivan's headshot" className="headshot" />
                     <h1 className="name">Ivan Betancourt</h1>

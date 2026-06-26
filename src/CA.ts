@@ -5,7 +5,9 @@ class CA {
     cellSize: number;
     ctx;
     purplePallete = [`rgb(166, 105, 209)`, `rgb(138, 73, 184)`, `rgb(228, 203, 245)`];
-    bluePallete = [`rgb(62, 164, 237)`, `rgb(36, 138, 212)`, `rgb(132, 194, 240)`]
+    bluePallete = [`rgb(62, 164, 237)`, `rgb(36, 138, 212)`, `rgb(132, 194, 240)`];
+    greenPallete = [`rgb(37, 219, 68)`, `rgb(29, 181, 55)`, `rgb(116, 227, 135)`];
+    orangePallete = [`rgb(224, 134, 49)`, `rgb(201, 109, 22)`, `rgb(240, 162, 89)`];
 
     constructor(rows: number, cols: number, cellSize: number, ctx) {
         this.rows = rows;
@@ -105,7 +107,7 @@ class CA {
         this.grid = next;
     }
 
-    getNeighbors(row, col) {
+    getNeighbors(row: number, col: number) {
         let neighbors: number = 0;
 
         for (let dr = -1; dr <= 1; dr++) {

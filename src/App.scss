@@ -100,3 +100,23 @@ canvas {
   height: 100vh;
   width: 100vw;
 }
+
+.thesisPlug {
+  position: absolute;
+  right: 2rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.thesisPlug.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.thesisPlug:hover {
+  color: #999999;
+  cursor: pointer;
+}
