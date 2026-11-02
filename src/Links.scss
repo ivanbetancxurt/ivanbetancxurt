@@ -1,0 +1,14 @@
+.linkContainer {
+  padding-left: 1rem;
+  flex-direction: column;
+  list-style: none;
+  gap: 15px;
+}
+
+.link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: fit-content;
+}

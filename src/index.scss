@@ -1,7 +1,7 @@
 html,
 #root {
   height: 100%;
-  background-color: #f2edf7;
+  background-color: black;
 }
 
 body {
@@ -9,8 +9,9 @@ body {
   font-weight: 300;
   height: 100%;
   margin: 0;
-  padding: 0;
-  background-color: #f2edf7;
-  color: black; 
+  padding: 2rem;
+  background-color: black;
+  color: white; 
+  box-sizing: border-box;
 }
 

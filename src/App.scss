@@ -1,7 +1,31 @@
-.doto-text-400 {
+.dotoHeading {
   font-family: "Doto", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 900;
+  font-weight: 600;
   font-style: normal;
   font-variation-settings: "ROND" 0;
+  font-size: 50px;
+  margin: 0;
+  color: white;
+}
+
+.dotoBody {
+  font-family: "Doto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "ROND" 0;
+  font-size: 20px;
+  margin: 0;
+  color: white;
+}
+
+.container {
+  //background-color: red;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+  padding-bottom: 100px;
 }

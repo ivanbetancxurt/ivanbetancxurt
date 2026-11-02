@@ -1,9 +1,15 @@
 import "./App.scss";
+import Links from "./Links";
 
 function App() {
     return (
         <>
-            <h1 className="doto-text-400">Ivan Betancourt</h1>
+            <div className="container">
+                <p className="dotoHeading">Ivan Betancourt</p>
+                <p className="dotoBody">Software Developer</p>
+
+                <Links />
+            </div>
         </>
     );
 }
